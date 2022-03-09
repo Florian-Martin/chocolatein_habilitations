@@ -12,7 +12,10 @@
                 $email = htmlentities($_POST['email']);
                 $role = htmlentities($_POST['role']);
                 $mdp = htmlentities($_POST['mdp']);
-                $resultat = setUtilisateur($pseudo, $email, $role, $mdp);
+                $dateActivation = htmlentities($_POST['dateActivation']);
+                $dateDesactivation = htmlentities($_POST['dateDesactivation']);
+                $permanent = htmlentities($_POST['estPermanent']);
+                $resultat = setUtilisateur($pseudo, $email, $role, $mdp, $dateActivation, $dateDesactivation, $permanent);
                 if($resultat){
                     $_SESSION["success"] = 'Utilisateur ajouté';
                 }
@@ -35,10 +38,14 @@
             if ($_POST['token'] == $_SESSION['token'] && time() - $_SESSION['token_time'] <= 60){
                 $pseudo = htmlentities($_POST['pseudo']);
                 $email = htmlentities($_POST['email']);
-                $role = htmlentities($_POST['role']);
                 $id = htmlentities($_POST['id']);
+                //$habilitations = htmlentities($_POST['habilitations']);
+                $habilitations = $_POST['habilitations'];
+                $dateActivation = htmlentities($_POST['dateActivation']);
+                $dateDesactivation = htmlentities($_POST['dateDesactivation']);
+                $permanent = htmlentities($_POST['estPermanent']);
 
-                $resultat = updateUtilisateur($pseudo, $email, $role, $id);
+                $resultat = updateUtilisateur($pseudo, $email, $id, $dateActivation, $dateDesactivation, $permanent, $habilitations);
                 if($resultat){
                     $_SESSION['success'] = 'Utilisateur modifié';
                 }

@@ -1,7 +1,7 @@
 <?php
 
 function login($pseudoconnect, $passconnect) {
-    $util = getUtilisateurByMailU($pseudoconnect);
+    $util = getUtilisateurActifByMailU($pseudoconnect);
     if(isset($util["motdepasse"])){
         $mdpBD =  $util["motdepasse"]; 
         if($mdpBD == $passconnect){
@@ -39,7 +39,7 @@ function isLoggedOn() {
     }
     $ret = false;
     if(isset($_SESSION["mail"])) {
-        $util = getUtilisateurByMailU($_SESSION["mail"]);
+        $util = getUtilisateurActifByMailU($_SESSION["mail"]);
         if ($util["mail"] == $_SESSION["mail"] && $util["motdepasse"] == $_SESSION["motdepasse"]
         ) {
             $ret = true;

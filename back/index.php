@@ -13,6 +13,8 @@ else{
 
 // appel controleur principal
 $fichier = controleurPrincipal($action);
+$menuPublic = getPages(0);
+$menuSpecifique = chargerMenuSpecifique();
 
 //chargement du controleur correspondant à l'action
 include "$racine/controleurs/$fichier";

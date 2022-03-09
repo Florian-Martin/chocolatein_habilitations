@@ -46,6 +46,7 @@ switch ($nomVue) {
         $fichierVue = "crudUtilisateurs/v_modifUtilisateur.php";
         $roles = getRoles();
         $data = getUtilisateurByMailU($id);
+        $lesHabilitations = getEtatHabilitationsByUser($data['IDUTILISATEURS']);
         break;
     case "suprUtilisateur" :
         $fichierVue = "crudUtilisateurs/v_suprUtilisateur.php";

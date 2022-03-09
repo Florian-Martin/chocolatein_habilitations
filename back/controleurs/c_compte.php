@@ -15,6 +15,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     if(isLoggedOn()){
 
         $user = getUtilisateurByMailU($_SESSION['mail']);
+        $lesHabilitations = getEtatHabilitationsByUser($user['IDUTILISATEURS']);
 
         // appel du script de vue qui permet de gerer l'affichage des donnees
         $title = "Mes informations personnelles";

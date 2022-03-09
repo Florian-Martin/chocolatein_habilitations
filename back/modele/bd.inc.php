@@ -1,10 +1,10 @@
 <?php
 
 function connexionPDO() {
-    $login = "userchoc";
-	$mdp = "p@ssCh0c";
+    $login = "root";
+	$mdp = "";
 	$bd = "bddchocsq3";
-	$serveur = "localhost";
+	$serveur = "127.0.0.1:3307";
 
     try {
         $conn = new PDO("mysql:host=$serveur;dbname=$bd", $login, $mdp, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'')); 

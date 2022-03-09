@@ -30,6 +30,25 @@ function getUtilisateurByMailU($mailU) {
     return $resultat;
 }
 
+function getUtilisateurActifByMailU($mailU){
+    $resultat = [];
+    try {
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("SELECT * FROM utilisateurs
+                                JOIN roles ON role = IDROLES
+                                WHERE mail = :mail
+                                AND (permanent = 1 OR CURRENT_DATE BETWEEN dateActivation AND dateDesactivation)"
+                            );
+        $req->bindValue('mail', $mailU, PDO::PARAM_STR);
+        $req->execute();
+        $resultat = $req->fetch(PDO::FETCH_ASSOC);
+    }
+    catch(PDOException $e){
+        print("Erreur! : " . $e->getMessage());
+    }
+    return $resultat;
+}
+
 function setUtilisateur($pseudo, $email, $role, $mdp) {
     $resultat = false;
     $passconnect = hash('sha256', $mdp);
