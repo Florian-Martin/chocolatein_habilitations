@@ -4,9 +4,9 @@
         $racine = "..";
     }
 
-    if(isLoggedOn()){
+    if (isLoggedOn()){
 
-        if(isset($_POST['add'])){
+        if (isset($_POST['add'])){
             if ($_POST['token'] == $_SESSION['token'] && time() - $_SESSION['token_time'] <= 60){
                 $pseudo = htmlentities($_POST['pseudo']);
                 $email = htmlentities($_POST['email']);
@@ -16,7 +16,7 @@
                 $dateDesactivation = htmlentities($_POST['dateDesactivation']);
                 $permanent = htmlentities($_POST['estPermanent']);
                 $resultat = setUtilisateur($pseudo, $email, $role, $mdp, $dateActivation, $dateDesactivation, $permanent);
-                if($resultat){
+                if ($resultat){
                     $_SESSION["success"] = 'Utilisateur ajouté';
                 }
                 else{
@@ -24,17 +24,17 @@
                 }
             } 
             else {
-                if($_POST['token'] != $_SESSION['token']){
+                if ($_POST['token'] != $_SESSION['token']){
                     $_SESSION["error"] = 'Problème jeton invalide';
                 }
-                if(time() - $_SESSION['token_time'] > 60){
+                if (time() - $_SESSION['token_time'] > 60){
                     $_SESSION["error"] = 'Problème jeton expiré';
                 }
             }
         }
 
                 
-        if(isset($_POST['edit'])){
+        if (isset($_POST['edit'])){
             if ($_POST['token'] == $_SESSION['token'] && time() - $_SESSION['token_time'] <= 60){
                 $pseudo = htmlentities($_POST['pseudo']);
                 $email = htmlentities($_POST['email']);
@@ -46,7 +46,7 @@
                 $permanent = htmlentities($_POST['estPermanent']);
 
                 $resultat = updateUtilisateur($pseudo, $email, $id, $dateActivation, $dateDesactivation, $permanent, $habilitations);
-                if($resultat){
+                if ($resultat){
                     $_SESSION['success'] = 'Utilisateur modifié';
                 }
                 else{
@@ -63,11 +63,11 @@
             }
         }
         
-        if(isset($_POST['supr'])){
+        if (isset($_POST['supr'])){
             if ($_POST['token'] == $_SESSION['token'] && time() - $_SESSION['token_time'] <= 60){
                 $id = htmlentities($_POST['id']);
                 $resultat = supprUtilisateur($id);
-                if($resultat){
+                if ($resultat){
                     $_SESSION['success'] = 'Utilisateur supprimé';
                 }
                 else{
@@ -78,7 +78,7 @@
                 if($_POST['token'] != $_SESSION['token']){
                     $_SESSION["error"] = 'Problème jeton invalide';
                 }
-                if(time() - $_SESSION['token_time'] > 60){
+                if (time() - $_SESSION['token_time'] > 60){
                     $_SESSION["error"] = 'Problème jeton expiré';
                 }
             }
